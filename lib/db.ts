@@ -6,7 +6,7 @@
 export async function sqlQuery<T = Record<string, unknown>>(
   query: string,
   params?: Record<string, unknown>
-): Promise<T[]> {
+): Promise<T> {
   console.warn('Database not configured in standalone mode');
-  return [];
+  return [] as unknown as T;
 }
