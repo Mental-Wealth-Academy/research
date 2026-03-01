@@ -2,6 +2,9 @@
   margin-left: 265px;
   min-height: 100vh;
   overflow-x: hidden;
+  width: calc(100vw - 265px);
+  max-width: calc(100vw - 265px);
+  box-sizing: border-box;
 }
 
 .content {
@@ -11,6 +14,11 @@
   padding: 32px 32px 64px;
   display: grid;
   gap: 32px;
+  box-sizing: border-box;
+}
+
+.content > * {
+  min-width: 0;
 }
 
 /* ── HEADER BAR ──────────────────────────────────────── */
@@ -50,6 +58,31 @@
   color: #5168FF;
   border: 2px solid #5168FF;
   padding: 2px 8px;
+}
+
+.headerCenter {
+  display: flex;
+  align-items: center;
+}
+
+.btnHeaderDemo {
+  padding: 8px 20px;
+  background: transparent;
+  color: #74C465;
+  border: 2px solid #74C465;
+  font-family: var(--font-button, 'IBM Plex Mono', monospace);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border-radius: 0;
+}
+
+.btnHeaderDemo:hover {
+  background: #74C465;
+  color: #1A1B24;
 }
 
 .headerRight {
@@ -109,6 +142,8 @@
   border-radius: 0;
   padding: 24px;
   position: relative;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .brutCardPrimary {
@@ -128,8 +163,15 @@
 /* ── DATA ENTRY PANEL ────────────────────────────────── */
 .entryPanel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 32px;
+  min-width: 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.entryPanel > * {
+  min-width: 0;
 }
 
 .entryForm {
@@ -296,8 +338,9 @@
 /* ── STATS GRID ──────────────────────────────────────── */
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
+  min-width: 0;
 }
 
 .statTile {
@@ -378,6 +421,8 @@
 .dataTableWrapper {
   overflow-x: auto;
   border: 2px solid rgba(26,27,36,0.15);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dataTable {
@@ -501,6 +546,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+  min-width: 0;
 }
 
 .chartCard {
@@ -508,6 +554,8 @@
   border: 2px solid rgba(26,27,36,0.15);
   box-shadow: 0 2px 8px rgba(26,27,36,0.06);
   padding: 24px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .chartTitle {
@@ -545,6 +593,8 @@
   gap: 2px;
   font-family: var(--font-mono, 'Space Mono', monospace);
   font-size: 0.72rem;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .matrixCell {
@@ -596,6 +646,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+  min-width: 0;
+}
+
+.inferGrid > * {
+  min-width: 0;
 }
 
 .inferTitle {
@@ -629,6 +684,8 @@
   grid-template-columns: auto 1fr;
   gap: 24px;
   align-items: start;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .azuraId {
@@ -647,6 +704,15 @@
   border: 3px solid rgba(255,255,255,0.2);
   margin-bottom: 8px;
   color: #fff;
+}
+
+.azuraPfp {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid rgba(81,104,255,0.5);
+  margin-bottom: 8px;
+  object-fit: cover;
 }
 
 .azuraNameLabel {
@@ -800,14 +866,20 @@
   .pageLayout {
     margin-left: 0;
     padding-top: 56px;
+    width: 100vw;
+    max-width: 100vw;
   }
 
   .headerBar {
     display: none;
   }
 
+  .headerCenter {
+    display: none;
+  }
+
   .entryPanel {
-    grid-template-columns: 1fr;
+    max-width: none;
   }
 
   .chartGrid {
@@ -836,6 +908,95 @@
     padding: 16px 16px 48px;
     gap: 24px;
   }
+}
+
+/* ── BOX PLOT ───────────────────────────────────────── */
+.boxPlotSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── AZURA GENERATE BUTTON ──────────────────────────── */
+.azuraPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.azuraPromptText {
+  font-family: var(--font-primary, 'Poppins', sans-serif);
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+}
+
+.btnGenerate {
+  padding: 10px 24px;
+  background: #5168FF;
+  color: #fff;
+  border: 2px solid #5168FF;
+  font-family: var(--font-button, 'IBM Plex Mono', monospace);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 rgba(81,104,255,0.3);
+}
+
+.btnGenerate:hover {
+  background: #3d52e0;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(81,104,255,0.4);
+}
+
+.btnGenerate:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(81,104,255,0.2);
+}
+
+/* ── AZURA RATING ───────────────────────────────────── */
+.azuraRatingRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.ratingBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 200ms ease;
+  border-radius: 0;
+}
+
+.ratingBtn:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
+}
+
+.ratingBtnActiveUp {
+  border-color: #74C465;
+  color: #74C465;
+  background: rgba(116,196,101,0.15);
+}
+
+.ratingBtnActiveDown {
+  border-color: #FF8C42;
+  color: #FF8C42;
+  background: rgba(255,140,66,0.15);
 }
 
 @media (max-width: 400px) {
